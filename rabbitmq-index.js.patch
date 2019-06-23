@@ -1,0 +1,19 @@
+--- /home/app/lib/rabbitmq/index.js
++++ /home/app/lib/rabbitmq/index.js
+@@ -8,7 +8,7 @@
+ const Promise = require('bluebird');
+ const servicebus = require('servicebus');
+ const log = require('../../log');
+-const { host, port, exchange } = require('../../config.js').rabbitMQ;
++const { user, pass, host, port, exchange } = require('../../config.js').rabbitMQ;
+ const Correlator = require('./correlator');
+
+ class RabbitMq {
+@@ -75,7 +75,7 @@ class RabbitMq {
+ }
+
+ const rabbitMq = new RabbitMq({
+-  url: `amqp://${host}:${port}`,
++  url: `amqp://${user}:${pass}@${host}:${port}`,
+   exchangeName: exchange,
+ });
